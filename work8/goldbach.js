@@ -1,26 +1,31 @@
-var num = parseInt(prompt("输入一个偶数"));
-    isTrue(num);
-    // 判断一个数是否是质数
-    function goldbach(a){
-        var sum=0;
-        for(var i=1;i<=a;i++){
-            if(a % i ==0){
-                sum++;
+function goldbach(){
+    var value=parseInt(document.getElementById('odd').value)
+    var str=[]
+    if(value<=2||(value%2!= 0) )
+    {
+        alert('请输入一个大于2的偶数')
+        return false
+    }
+    for(let i=2;i<=value/2;i++)
+    {
+        for(j=2;j<i;j++)
+        {
+            if(i%j==0){
+                break;
             }
         }
-        if(sum==2){
-            return true;
-        }else{
-            return false;
+        if(j == i){
+            var s= value-i;
+            for(k=2; k<s;++k)
+            {
+                if(s%k==0){
+                    break;
+                }
+            }
+            if(k==s){
+                str+=value+"可以被拆分为两个素数"+i+"和"+s+"的和\n"
+            }
         }
     }
-  // 判断用户输入的偶数是否可分为两个质数之和：
-
-    function isTrue(a){
-      for(var i=2;i<a-2;i++){
-        var j = a -i;
-        if(goldbach(i)&&goldbach(j)){
-            console.log(a+"可以拆分为两个质数"+ i+"与"+j+"的和");
-        }
-      }
-    }
+    document.getElementById('goldbach').innerText=str
+}
